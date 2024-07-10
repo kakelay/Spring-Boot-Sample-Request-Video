@@ -1,21 +1,23 @@
 package co.istad.api.controller;
 
 import co.istad.api.model.Video;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
-@RestController
-//Base url
-@RequestMapping("/videos")
+@Controller
+
+// call as public for GetMapping without using @ResponseBody
+//@GetMapping
+@RequestMapping("api/videos")
 public class VideoRestController {
+
     @GetMapping
+    @ResponseBody
     List<Video> findAllVideo()
     {
        return Arrays.asList(
@@ -28,8 +30,8 @@ public class VideoRestController {
     }
     //EndPoint :   find
      @GetMapping("/find")
+     @ResponseBody
      String findVideoByUuid(){
-
          return "Video found by UUID";
      }
 }
